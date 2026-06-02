@@ -47,7 +47,7 @@ Bullet points are fine. We're looking for clear thinking, not polished prose.
 ## Step 5: Push & Submit
 
 1. Push your completed solution to your own GitHub repository
-2. Fill out the submission form: **[https://docs.google.com/forms/d/1oW6xeMSVPq7g5Rl9UXEjmTGvxETqtyGrRnsSx0dSQjML](https://docs.google.com/forms/d/1oW6xeMSVPq7g5Rl9UXEjmTGvxETqtyGrRnsSx0dSQjML)**
+2. Fill out the submission form: **[Submit here](https://docs.google.com/forms/d/e/1FAIpQLSdkL0DdPcMHnE6olvtK3gQvaza-sZN2EEzFyYG3uD91WhqjcA/viewform)**
    - Your alias (must match `alias.txt`)
    - Link to your GitHub repo
    - (Optional) Link to a demo video or recording
