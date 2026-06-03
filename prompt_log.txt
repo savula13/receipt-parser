@@ -1,0 +1,35 @@
+=== PROMPT LOG ===
+
+--- Prompt 1 (initial) ---
+you are an AI agent and software engineer helping me to quickly stand up a reliable and clean AI agent to parse plain text information into structured output for receipts. I will prioritize and plan architectural components and you will implement them in reliable, but efficient ways. End to end, this task should take about 40 minutes. All code must be explainable, keep this simple instead of over-engineering and refer to me to decide between engineering decisions. Use comments judiciously to explain complex code blocks and sections. Save my prompts to a text file called prompt_log.txt
+
+The file scaffold.py is a small Python web application. It accepts a plain-text receipt as input, sends it to an AI model, and is supposed to return a structured list of expense line items, each with a name, amount, and category. The README contains example output and example input.
+
+The major problem is that model output is trusted without validation. Create some test cases in a separate script file that can make calls to the FastAPI endpoint. Analyze the behavior of the agent as it currently exists and develop a plan to address the issues. I will prioritize what needs to be addressed so await my go-ahead on code implementation.
+
+--- Prompt 2 ---
+Instead of using http, use TestClient from FastAPI. Also, the tests will be created for each phase of the solution. Before writing comprehensive tests, identify the major issues and I will prioritize what to implement and test first.
+
+--- Prompt 3 (Phase 1) ---
+Yes I agree with the first major issue and for phase 1. I like category as an enum (it should be its own class). refactor scaffold.py so it includes the Pydantic classes and validation. Create a function to call the model and initialize the model parameters outside of parse_receipt. Also, modify the messages in parse_receipt as necessary to take in the receipt and structure the output in the appropriate LineItems.
+
+--- Prompt 4 (Phase 1 tests) ---
+create 2 tests, one that mocks call_model and one that hits the real model. (pytest is installed, just use pytest)
+
+--- Prompt 5 (Phase 2) ---
+for phase 2, it should handle model API errors rather than letting them propagate as unhandled exceptions and handle unparseable model outputs. The errors should not be 500 errors and should have a JSON output with structured info about where the error occured (improper model output, couldn't access model, etc)
+
+--- Prompt 6 (Phase 2 tests) ---
+yes I think those distinctions are reasonable, create the phase 2 tests
+
+--- Prompt 7 (Phase 3) ---
+we still have time for phase 3 and the corrective retry is important. The retry should occur when not all the LineItem fields are populated, there is a not appropriate data type for a field (string in amount, non-allowed category in category), or if the model output is empty. The retry should include a structure which clearly designates the bad response from the model and asks the model to correct it.
+
+--- Prompt 8 (Phase 3 test + Phase 4 logging) ---
+write one phase 3 test that tests if the number of retries works as expected (given a malformed response initially and a well formed response afterwards). Also since we are running short on time, implement some basic logging and observability for the agent. This should include token usage (input and output), latency, and log the raw model responses and failures to a markdown or text file.
+
+--- Prompt 9 ---
+create a post request that I can send in the terminal to validate the agent working with hitting the model myself (and viewing the output)
+
+--- Prompt 10 (hardening) ---
+now very quickly, to make this more robust, is there a way to add some more validation/checking for the model_dump? If we assume that the output can't be trusted, what else can be implemented to ensure that the model output is verified for any other issues (security, etc) so it doesn't have downstream effects

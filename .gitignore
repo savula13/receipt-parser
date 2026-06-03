@@ -26,3 +26,10 @@ Thumbs.db
 dist/
 build/
 *.egg-info/
+
+.env
+.env.*
+
+
+# Agent observability log
+agent_log.md
