@@ -1,0 +1,84 @@
+saipranavavula@MacBook-Air-55 ai-systems-takehome %  curl -s -X POST http://localhost:8000/parse \
+    -H "Content-Type: application/json" \
+    -d '{"receipt_text": "Uber Eats       $34.20\nAWS invoice     $412.00\nOffice Depot    $28.50\nDelta Airlines  $890.00"}' | python3 -m json.tool
+{
+    "result": [
+        {
+            "item": "Uber Eats",
+            "amount": 34.2,
+            "category": "meals"
+        },
+        {
+            "item": "AWS invoice",
+            "amount": 412.0,
+            "category": "software"
+        },
+        {
+            "item": "Office Depot",
+            "amount": 28.5,
+            "category": "office_supplies"
+        },
+        {
+            "item": "Delta Airlines",
+            "amount": 890.0,
+            "category": "travel"
+        }
+    ]
+}
+
+saipranavavula@MacBook-Air-55 ai-systems-takehome %   curl -s -X POST http://localhost:8000/parse \
+    -H "Content-Type: application/json" \
+    -d '{"receipt_text": "Uber Eats       $34.20\nAWS invoice     $412.00\nSportingGoods    $28.50\nDelta Airlines  $890.00"}' | python3 -m json.tool
+{
+    "result": [
+        {
+            "item": "Uber Eats",
+            "amount": 34.2,
+            "category": "meals"
+        },
+        {
+            "item": "AWS invoice",
+            "amount": 412.0,
+            "category": "software"
+        },
+        {
+            "item": "SportingGoods",
+            "amount": 28.5,
+            "category": "other"
+        },
+        {
+            "item": "Delta Airlines",
+            "amount": 890.0,
+            "category": "travel"
+        }
+    ]
+}
+
+saipranavavula@MacBook-Air-55 ai-systems-takehome %   curl -s -X POST http://localhost:8000/parse \
+    -H "Content-Type: application/json" \
+    -d '{"receipt_text": "asdf qwer zxcv 1234 !!!"}' | python3 -m json.tool
+{
+    "resu
+
+Output for tests passing:
+============================================================== test session starts ==============================================================
+platform darwin -- Python 3.11.13, pytest-9.0.3, pluggy-1.6.0
+rootdir: /Users/saipranavavula/Downloads/Interviews/Eigen/ai-systems-takehome
+configfile: pyproject.toml
+plugins: anyio-4.13.0
+collected 6 items                                                                                                                               
+
+test_scaffold.py ......                                                                                                                   [100%]
+
+=============================================================== warnings summary ================================================================
+.venv/lib/python3.11/site-packages/fastapi/testclient.py:1
+  /Users/saipranavavula/Downloads/Interviews/Eigen/ai-systems-takehome/.venv/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+test_scaffold.py::test_parse_with_real_model
+  /Users/saipranavavula/Downloads/Interviews/Eigen/ai-systems-takehome/scaffold.py:167: DeprecationWarning: The model 'claude-sonnet-4-20250514' is deprecated and will reach end-of-life on June 15th, 2026.
+  Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+    message = client.messages.create(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================================================= 6 passed, 2 warnings in 2.89s ==================
