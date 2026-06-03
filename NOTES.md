@@ -21,10 +21,12 @@
 - Left out more complex logic for resolving to category - LLM can handle simply
 - Left out testing and resolving more complex input strings for receipts - or other types of data handling (images, etc)
 - Left out validating data accuracy - more ambiguous problem to validate against input string
+- Did not implement a frontend dashboard or UI for the user to enter receipt text - can be done but would take up too much time and not core functionality
 
 # Break Points and Fixes with More Time
 - Model hallucinations - validation is for structure not model accuracy. This is trusting that the LLM provider does not hallucinate with this straightforward tasks. Would implement more deterministic checking of model output vs input string to ensure that the data is accurate.
 - Logging is pretty rudimental - does not have robust handling for multiple concurrent reads/writes way and no compaction/truncaction of logs can balloon size and storage.
+- Handling unexpected exceptions in an outer layer
 - No retry if the API is unreachable - could implement a router between different model providers if one does not work
 - Would implement intermediate logging for retries as well
 - Log metrics for agent performance (receipts parsed, total input/output tokens)

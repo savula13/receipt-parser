@@ -18,7 +18,7 @@ client = anthropic.Anthropic()
 
 # Model parameters live at module scope so the call site stays clean and the
 # values are easy to find and tune in one place.
-MODEL = "claude-sonnet-4-20250514"
+MODEL = "claude-sonnet-6"
 MAX_TOKENS = 1024
 
 # Observability: we append human-readable markdown entries (raw responses, token
